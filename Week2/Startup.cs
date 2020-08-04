@@ -1,3 +1,5 @@
+using Week2.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +26,12 @@ namespace Week2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<MovieContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("MovieContext")));
+
+            services.AddDbContext<Week2Context>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("Week2Context")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
